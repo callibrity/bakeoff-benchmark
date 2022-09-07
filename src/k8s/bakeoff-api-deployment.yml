@@ -1,0 +1,49 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bakeoff-api
+  namespace: bakeoff
+  labels:
+    app: bakeoff-api
+spec:
+  replicas: 3
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: bakeoff-api
+  template:
+    metadata:
+      labels:
+        app: bakeoff-api
+    spec:
+      containers:
+        - name: spring-boot
+          image: docker.io/callibrity/bakeoff-spring-mvc:0.0.1-SNAPSHOT
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: DB_NAME
+              value: bakeoff
+            - name: DB_HOST
+              value: bakeoff-db
+            - name: DB_PORT
+              value: '5432'
+            - name: DB_USER
+              value: postgres
+            - name: DB_PASS
+              value: changeme
+            - name: PORT
+              value: '8080'
+          livenessProbe:
+            failureThreshold: 3
+            tcpSocket:
+              port: 8080
+            successThreshold: 1
+          readinessProbe:
+            failureThreshold: 3
+            tcpSocket:
+              port: 8080
+            successThreshold: 1
+          ports:
+            - containerPort: 8080
+              name: http

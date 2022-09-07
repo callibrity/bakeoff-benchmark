@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: bakeoff
+  name: bakeoff-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bakeoff-db
+  template:
+    metadata:
+      labels:
+        app: bakeoff-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:14.5
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: bakeoff-db-config

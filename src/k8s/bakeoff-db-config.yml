@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: bakeoff-db-config
+  namespace: bakeoff
+  labels:
+    app: bakeoff-db
+data:
+  POSTGRES_DB: bakeoff
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: changeme
