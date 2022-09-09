@@ -19,8 +19,8 @@ spec:
     spec:
       containers:
         - name: spring-boot
-          image: docker.io/callibrity/bakeoff-spring-mvc:0.0.1-SNAPSHOT
-          imagePullPolicy: IfNotPresent
+          image: docker.io/callibrity/bakeoff-micronaut:1.0.0
+          imagePullPolicy: Always
           env:
             - name: DB_NAME
               value: bakeoff
