@@ -46,7 +46,7 @@ class BakeoffSimulation : Simulation() {
         )
 
     private val httpProtocol =
-        http.baseUrl("http://192.168.1.180/api/artists")
+        http.baseUrl("http://localhost:8080/api/artists")//"http://192.168.1.180/api/artists")
             .acceptHeader("application/json")
             .acceptEncodingHeader("gzip, deflate")
 
@@ -54,7 +54,7 @@ class BakeoffSimulation : Simulation() {
 
     init {
         setUp(
-            users.injectOpen(rampUsers(10000).during(30)),
+            users.injectOpen(rampUsers(1).during(30)),
         ).protocols(httpProtocol)
     }
 }
