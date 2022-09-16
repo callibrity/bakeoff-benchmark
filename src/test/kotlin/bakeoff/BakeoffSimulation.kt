@@ -64,11 +64,11 @@ class BakeoffSimulation : Simulation() {
     init {
         setUp(
             users.injectOpen(
-                incrementUsersPerSec(100.0)
+                incrementUsersPerSec(25.0)
                     .times(20)
-                    .eachLevelLasting(30)
+                    .eachLevelLasting(15)
                     .startingFrom(100.0)
-                    .separatedByRampsLasting(10)
+                    .separatedByRampsLasting(5)
 
 //                incrementConcurrentUsers(50)
 //                    .times(2)
