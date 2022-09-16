@@ -54,15 +54,28 @@ class BakeoffSimulation : Simulation() {
         )
 
     private val httpProtocol =
-        http.baseUrl("http://localhost/api/artists")//"http://192.168.1.180/api/artists")
+        http.baseUrl("http://192.168.1.180/api/artists")
             .acceptHeader("application/json")
+            .shareConnections()
             .acceptEncodingHeader("gzip, deflate")
 
     private val users = scenario("Users").exec(create, retrieve, update, delete)
 
     init {
         setUp(
-            users.injectOpen(rampUsers(10000).during(60)),
+            users.injectOpen(
+                incrementUsersPerSec(100.0)
+                    .times(20)
+                    .eachLevelLasting(30)
+                    .startingFrom(100.0)
+                    .separatedByRampsLasting(10)
+
+//                incrementConcurrentUsers(50)
+//                    .times(2)
+//                    .eachLevelLasting(30)
+//                    .separatedByRampsLasting(15)
+//                    .startingFrom(50)
+            ),
         ).protocols(httpProtocol)
     }
 }
