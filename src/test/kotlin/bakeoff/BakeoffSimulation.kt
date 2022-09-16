@@ -12,14 +12,12 @@ import io.gatling.javaapi.http.HttpDsl.*
  */
 class BakeoffSimulation : Simulation() {
 
-//    val feeder = csv("search.csv").random()
-
-    private val list =
-        exec(
-            http("list")
-                .get("/")
-                .check(status().shouldBe(200))
-        )
+//    private val list =
+//        exec(
+//            http("list")
+//                .get("/")
+//                .check(status().shouldBe(200))
+//        )
 
     private val create =
         exec(
@@ -31,9 +29,19 @@ class BakeoffSimulation : Simulation() {
                 .check(jsonPath("$..id").saveAs("artistId"))
         )
 
-    private val get =
+    private val update =
         exec(
-            http("get")
+            http("update")
+                .put("/#{artistId}")
+                .body(StringBody("{\"name\":\"Madonna\", \"genre\": \"Rock\"}"))
+                .asJson()
+                .check(status().shouldBe(200))
+                .check(jsonPath("$..name").shouldBe("Madonna"))
+        )
+
+    private val retrieve =
+        exec(
+            http("retrieve")
                 .get("/#{artistId}")
                 .check(status().shouldBe(200))
         )
@@ -50,7 +58,7 @@ class BakeoffSimulation : Simulation() {
             .acceptHeader("application/json")
             .acceptEncodingHeader("gzip, deflate")
 
-    private val users = scenario("Users").exec(create, get, list, delete)
+    private val users = scenario("Users").exec(create, retrieve, update, delete)
 
     init {
         setUp(
