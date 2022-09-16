@@ -6,7 +6,6 @@ function runSimulation() {
   kubectl delete -f src/k8s/bakeoff-db-deployment.yml
   kubectl delete -f src/k8s/bakeoff-db-service.yml
   kubectl delete -f src/k8s/bakeoff-api-deployment.yml
-  kubectl delete -f src/k8s/bakeoff-api-autoscaler.yml
   kubectl delete -f src/k8s/bakeoff-api-service.yml
   kubectl delete -f src/k8s/bakeoff-api-ingress.yml
   git restore src/k8s/bake-api-deployment.yml
