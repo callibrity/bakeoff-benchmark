@@ -21,4 +21,6 @@ function runSimulation() {
   mvn clean gatling:test
 }
 
+runSimulation "docker.io/callibrity/bakeoff-go-gin:1.0.1"
 runSimulation "docker.io/callibrity/bakeoff-spring-mvc:0.0.1-SNAPSHOT"
+runSimulation "docker.io/callibrity/bakeoff-quarkus:1.0.1"
