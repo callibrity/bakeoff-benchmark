@@ -54,7 +54,7 @@ class BakeoffSimulation : Simulation() {
 
     init {
         setUp(
-            users.injectOpen(rampUsers(1).during(30)),
+            users.injectOpen(rampUsers(100000).during(300)),
         ).protocols(httpProtocol)
     }
 }
