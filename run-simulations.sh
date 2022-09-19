@@ -28,7 +28,8 @@ function runSimulation() {
 }
 
 mvn clean
-runSimulation "docker.io/callibrity/bakeoff-grails:1.0.0" "bakeoff-grails"
+runSimulation "docker.io/callibrity/bakeoff-php-laravel:1.0.0" "bakeoff-php-laravel"
+#runSimulation "docker.io/callibrity/bakeoff-grails:1.0.0" "bakeoff-grails"
 #runSimulation "docker.io/callibrity/bakeoff-go-gin:1.0.2" "bakeoff-go-gin"
 #runSimulation "docker.io/callibrity/bakeoff-node-express:latest" "bakeoff-node-express"
 #runSimulation "docker.io/callibrity/bakeoff-quarkus:1.0.2-native" "bakeoff-quarkus-native"
