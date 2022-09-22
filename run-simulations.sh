@@ -28,7 +28,8 @@ function runSimulation() {
 }
 
 mvn clean
-runSimulation "docker.io/callibrity/bakeoff-asp-dotnet-core:1.0.0" "bakeoff-asp-dotnet-core"
+runSimulation "docker.io/callibrity/bakeoff-akka-http:1.0.0" "bakeoff-akka-http"
+#runSimulation "docker.io/callibrity/bakeoff-asp-dotnet-core:1.0.0" "bakeoff-asp-dotnet-core"
 #runSimulation "docker.io/callibrity/bakeoff-dapper-netcore:1.0.0" "bakeoff-dapper-netcore"
 #runSimulation "docker.io/callibrity/bakeoff-grails:1.0.0" "bakeoff-grails"
 #runSimulation "docker.io/callibrity/bakeoff-go-gin:1.0.2" "bakeoff-go-gin"
